@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flor com canvas</title>
+</head>
+
+<body>
+  <h1>Aqui está uma flor</h1>
+  <canvas width="600" height="400"></canvas>
+
+  <script>
+    function novoPincel(cor) {
+      let tela = document.querySelector('canvas');
+      let pincel = tela.getContext('2d');
+      pincel.fillStyle = cor;
+
+      return pincel;
+    }
+
+    function desenhaCirculo(x, y, raio, cor) {
+      let pincel = novoPincel(cor);
+      pincel.beginPath();
+      pincel.arc(x, y, raio, 0, 2 * Math.PI);
+      pincel.fill();
+    }
+
+    let pincel = novoPincel('lightgray');
+    pincel.fillRect(0, 0, 600, 400);      
+    desenhaCirculo(300, 200, 15, '#ff0000');  
+    desenhaCirculo(300, 170, 15, '#ffff00');  
+    desenhaCirculo(330, 200, 15, '#000000');
+    desenhaCirculo(270, 200, 15, '#ffa500');
+    desenhaCirculo(300, 230, 15, '#0000ff');
+  </script>
+</body>
+
+</html>

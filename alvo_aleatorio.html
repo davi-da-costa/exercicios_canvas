@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&color=swap" rel="stylesheet">
+  <title>Acerte o alvo!</title>
+
+  <style>
+    html,
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Acerte o alvo <span id='p1'>.</span><span id='p2'>.</span><span id='p3'>.</span></h1>
+  <canvas height="400" width="600"></canvas>
+
+  <script>
+    let p1 = document.getElementById('p1');
+    let p2 = document.getElementById('p2');
+    let p3 = document.getElementById('p3');
+
+    let x_alvo = 0;
+    let y_alvo = 0;
+
+    p1.style.color = 'rgb(255, 255, 255)';
+    p2.style.color = 'rgb(255, 255, 255)';
+    p3.style.color = 'rgb(255, 255, 255)';
+
+    let tela = document.querySelector('canvas');
+    let pincel = tela.getContext('2d');
+
+    pincel.fillStyle = 'gray';
+    pincel.fillRect(0, 0, 600, 400);
+    pincel.strokeRect(0, 0, 600, 400);
+
+    setInterval(pontinhos, 500);
+    setInterval(() => desenhaAlvo(Math.round(Math.random() * 600), Math.round(Math.random() * 400)), 800);
+    tela.onclick = () => dispara(event);
+
+    function pontinhos () { 
+      if(p1.style.color == 'rgb(255, 255, 255)') {
+        p1.style.color = 'rgb(0, 0, 0)';
+      } else if (p2.style.color == 'rgb(255, 255, 255)') {
+        p2.style.color = 'rgb(0, 0, 0)';
+      } else if (p3.style.color == 'rgb(255, 255, 255)') {
+        p3.style.color = 'rgb(0, 0, 0)';
+      } else {
+        p1.style.color = 'rgb(255, 255, 255)';
+        p2.style.color = 'rgb(255, 255, 255)';
+        p3.style.color = 'rgb(255, 255, 255)';
+      }
+    }
+
+    function desenhaCirculo (x, y, raio, cor) {
+      pincel.beginPath();
+      pincel.fillStyle = cor;
+      pincel.arc(x, y, raio, 0, 2 * Math.PI);
+      pincel.fill();
+    }
+
+    function desenhaAlvo (x, y) {
+      x_alvo = x;
+      y_alvo = y;
+
+      limpaCanvas();
+      desenhaCirculo(x, y, 30, 'rgb(255, 0, 0)');
+      desenhaCirculo(x, y, 20, 'rgb(255, 255, 255)');
+      desenhaCirculo(x, y, 10, 'rgb(255, 0, 0)');
+    }
+
+    function limpaCanvas () {
+      pincel.fillStyle = 'gray';
+      pincel.fillRect(0, 0, 600, 400);
+    }
+
+    function dispara (ev) {
+      let x = ev.pageX - tela.offsetLeft;
+      let y = ev.pageY - tela.offsetTop;
+
+      let dist_x = Math.pow(x - x_alvo, 2);
+      let dist_y = Math.pow(y - y_alvo, 2);
+      if(Math.sqrt(dist_x + dist_y) <= 10) {
+        alert("Você conseguiu!");
+      }
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráfico de Barras</title>
+</head>
+
+<body>
+  <h1>Gráfico de barras</h1>
+  <canvas width="800" height="800"></canvas>
+
+  <script>
+    function desenhaBarras(x, y, serie, cores, legenda) {
+      let tela = document.querySelector("canvas");
+      let pincel = tela.getContext("2d");
+      let alturaBarra = y;
+
+      for (let i = 0; i < serie.length; i++) {
+        pincel.fillStyle = cores[i];
+        if (i === 0) {
+          pincel.fillRect(x, y, 50, serie[i]);
+          pincel.strokeRect(x, y, 50, serie[i]);
+          alturaBarra += serie[i];
+        } else {
+          pincel.fillRect(x, alturaBarra, 50, serie[i]);
+          pincel.strokeRect(x, alturaBarra, 50, serie[i]);
+          alturaBarra += serie[i];
+        }
+      }
+
+      pincel.font = '10px Georgia';
+      pincel.fillStyle = "black";
+      pincel.fillText(legenda, (x + 15), alturaBarra + 15);
+    }
+
+    desenhaBarras(50, 50, [50, 25, 20, 5], ['blue', 'green', 'yellow', 'red'], '2015');
+    desenhaBarras(200, 50, [65, 20, 13, 2], ['blue', 'green', 'yellow', 'red'], '2016');
+  </script>
+</body>
+
+</html>

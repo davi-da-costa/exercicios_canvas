@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bandeira do Brasil</title>
+</head>
+
+<body>
+  <canvas width="500" height="350"></canvas>
+
+  <script>
+    let tela = document.querySelector('canvas');
+    let pincel = tela.getContext('2d');
+
+    pincel.fillStyle = '#289b24';
+    pincel.fillRect(0, 0, 500, 350);
+
+    pincel.fillStyle = '#fee000';
+    pincel.beginPath();
+    pincel.moveTo(250, 40);
+    pincel.lineTo(460, 175);
+    pincel.lineTo(250, 310);
+    pincel.lineTo(40, 175);
+    pincel.fill();
+
+    pincel.fillStyle = '#00257b';
+    pincel.beginPath();
+    pincel.arc(250, 175, 90, 0, 2 * Math.PI);
+    pincel.fill();
+  </script>
+</body>
+
+</html>

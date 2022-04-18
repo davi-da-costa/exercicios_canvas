@@ -1,0 +1,68 @@
+<h1>Movimente o círculo com as setas do teclado</h1>
+
+<canvas width="600" height="400"></canvas>
+
+<script>
+  var tela = document.querySelector('canvas');
+  var pincel = tela.getContext('2d');
+  var esquerda = 37;
+  var cima = 38;
+  var direita = 39;
+  var baixo = 40;
+  var x = 20;
+  var y = 20;
+  let raio = 15;
+
+  desenhaCirculo(x, y, raio);
+
+  function desenhaCirculo(x, y, raio) {
+    limpaTela();
+    pincel.fillStyle = 'blue';
+    pincel.beginPath();
+    pincel.arc(x, y, raio, 0, 2 * Math.PI);
+    pincel.fill();
+  }
+
+  function limpaTela() {
+    pincel.clearRect(0, 0, 600, 400);
+  }
+
+  function atualizaTela(e) {
+    limpaTela();
+    desenhaCirculo(x, y, 10);
+  }
+
+  function leDoTeclado(ev) {
+    if (ev.keyCode == cima) {
+      if(y == 0) {
+        y = 400;
+        desenhaCirculo(x, y, raio);
+      } else {
+        desenhaCirculo(x, --y, raio)
+      }
+    } else if (ev.keyCode == esquerda) {
+      if(x == 0) {
+        x = 600;
+        desenhaCirculo(x, y, raio);
+      } else {
+        desenhaCirculo(--x, y, raio);
+      }
+    } else if (ev.keyCode == baixo) {
+      if(y == 400) {
+        y = 0;
+        desenhaCirculo(x, y, raio);
+      } else {
+        desenhaCirculo(x, ++y, raio);
+      }
+    } else if (ev.keyCode == direita) {
+      if(x == 600) {
+        x = 0;
+        desenhaCirculo(x, y, raio);
+      } else {
+        desenhaCirculo(++x, y, raio);
+      }
+    }
+  }
+
+  document.onkeydown = () => setInterval(leDoTeclado(event), 300);
+</script>

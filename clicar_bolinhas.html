@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botão esquerdo e direito</title>
+</head>
+
+<body>
+  <h1>Clique direito muda a cor do círculo</h1>
+
+  <canvas height="300" width="500"></canvas>
+
+  <script>
+    function cliqueDireito(cores, pincel) {
+      indiceAtual = cores.indexOf(pincel.fillStyle);
+      if(indiceAtual == cores.length - 1) {
+        pincel.fillStyle = cores[0];
+      } else {
+        pincel.fillStyle = cores[indiceAtual + 1];
+      }
+    }
+
+    function cliqueEsquerdo(pincel, tela, evento) {
+      let x = evento.pageX - tela.offsetLeft;
+      let y = evento.pageY - tela.offsetTop;
+      pincel.beginPath();
+      pincel.arc(x, y, 5, 0, 2 * Math.PI);
+      pincel.fill();
+    }
+
+    let tela = document.querySelector("canvas");
+    let pincel = tela.getContext("2d");
+    const cores = ['#ffff42', '#4b42ff', '#ff4242'];
+    tela.addEventListener("contextmenu", e => e.preventDefault());
+
+    pincel.fillStyle = "gray";
+    pincel.fillRect(0, 0, 500, 300);
+    pincel.fillStyle = cores[0];
+
+    tela.onauxclick = () => cliqueDireito(cores, pincel);
+    tela.onclick = () => cliqueEsquerdo(pincel, tela, event);
+  </script>
+</body>
+
+</html>
