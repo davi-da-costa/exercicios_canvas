@@ -1,0 +1,39 @@
+html, body {
+  display: flex;
+}
+
+.main {
+  height: 100vh;
+  width: 35vw;
+  background-color: rgb(116, 248, 231);
+  text-align: center;
+  font-family: 'Mukta', sans-serif;
+  overflow-y: auto;
+}
+
+.main h1 {
+  font-size: 2vw;
+  padding: 2vh 0;
+  font-weight: bold;
+}
+
+.links li {
+  padding: 1.5vh 0;
+  text-decoration: none;
+}
+
+.links a {
+  text-decoration: none;
+  font-size: 1.5vw;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+iframe {
+  height: 100%;
+  width: 65vw;
+}
