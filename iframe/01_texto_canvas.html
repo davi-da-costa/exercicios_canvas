@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texto com canvas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&color=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/iframe.css">
+</head>
+
+<body>
+  <canvas width="600" height="400"></canvas>
+
+  <script>
+    function desenhaTexto(x, y, texto, cor, tamanho) {
+      var tela = document.querySelector('canvas');
+      var pincel = tela.getContext('2d');
+
+      pincel.font = `${tamanho}px Georgia`;
+      pincel.fillStyle = cor;
+      pincel.fillText(texto, x, y);
+    }
+
+    desenhaTexto(10, 40, "Com o HTML canvas é possível desenhar textos, como esse.", "blue", 20);
+    desenhaTexto(50, 120, "Além disso...", "green", 35);
+    desenhaTexto(20, 300, "É possível escolher a posição e cor do texto a seu critério!", "orange", 22);
+  </script>
+</body>
+
+</html>

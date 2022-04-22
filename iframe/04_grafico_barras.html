@@ -6,11 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gráfico de Barras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&color=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/iframe.css">
 </head>
 
 <body>
-  <h1>Gráfico de barras</h1>
-  <canvas width="800" height="800"></canvas>
+  <canvas width="400px" height="400px"></canvas>
 
   <script>
     function desenhaBarras(x, y, serie, cores, legenda) {
@@ -31,9 +35,9 @@
         }
       }
 
-      pincel.font = '10px Georgia';
+      pincel.font = '20px Georgia';
       pincel.fillStyle = "black";
-      pincel.fillText(legenda, (x + 15), alturaBarra + 15);
+      pincel.fillText(legenda, (x + 5), alturaBarra + 15);
     }
 
     desenhaBarras(50, 50, [50, 25, 20, 5], ['blue', 'green', 'yellow', 'red'], '2015');

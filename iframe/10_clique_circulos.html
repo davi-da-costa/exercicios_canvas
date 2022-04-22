@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Botão esquerdo e direito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&color=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/iframe.css">
 </head>
 
 <body>
-  <h1>Clique direito muda a cor do círculo</h1>
-
+  <h1>Clique esquerdo desenha</h1>
+  <h1>Clique direito altera a cor</h1>
   <canvas height="300" width="500"></canvas>
 
   <script>
     function cliqueDireito(cores, pincel) {
       indiceAtual = cores.indexOf(pincel.fillStyle);
-      if(indiceAtual == cores.length - 1) {
+      if (indiceAtual == cores.length - 1) {
         pincel.fillStyle = cores[0];
       } else {
         pincel.fillStyle = cores[indiceAtual + 1];

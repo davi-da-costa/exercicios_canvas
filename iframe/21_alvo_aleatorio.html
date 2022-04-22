@@ -9,19 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&color=swap" rel="stylesheet">
   <title>Acerte o alvo!</title>
-
-  <style>
-    html,
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    h1 {
-      font-family: 'Press Start 2P', cursive;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/iframe.css">
 </head>
 
 <body>
@@ -51,8 +40,8 @@
     setInterval(() => desenhaAlvo(Math.round(Math.random() * 600), Math.round(Math.random() * 400)), 800);
     tela.onclick = () => dispara(event);
 
-    function pontinhos () { 
-      if(p1.style.color == 'rgb(255, 255, 255)') {
+    function pontinhos() {
+      if (p1.style.color == 'rgb(255, 255, 255)') {
         p1.style.color = 'rgb(0, 0, 0)';
       } else if (p2.style.color == 'rgb(255, 255, 255)') {
         p2.style.color = 'rgb(0, 0, 0)';
@@ -65,14 +54,14 @@
       }
     }
 
-    function desenhaCirculo (x, y, raio, cor) {
+    function desenhaCirculo(x, y, raio, cor) {
       pincel.beginPath();
       pincel.fillStyle = cor;
       pincel.arc(x, y, raio, 0, 2 * Math.PI);
       pincel.fill();
     }
 
-    function desenhaAlvo (x, y) {
+    function desenhaAlvo(x, y) {
       x_alvo = x;
       y_alvo = y;
 
@@ -82,22 +71,22 @@
       desenhaCirculo(x, y, 10, 'rgb(255, 0, 0)');
     }
 
-    function limpaCanvas () {
+    function limpaCanvas() {
       pincel.fillStyle = 'gray';
       pincel.fillRect(0, 0, 600, 400);
     }
 
-    function dispara (ev) {
+    function dispara(ev) {
       let x = ev.pageX - tela.offsetLeft;
       let y = ev.pageY - tela.offsetTop;
 
       let dist_x = Math.pow(x - x_alvo, 2);
       let dist_y = Math.pow(y - y_alvo, 2);
-      if(Math.sqrt(dist_x + dist_y) <= 10) {
+      if (Math.sqrt(dist_x + dist_y) <= 10) {
         alert("Você conseguiu!");
       }
     }
-    </script>
+  </script>
 </body>
 
 </html>

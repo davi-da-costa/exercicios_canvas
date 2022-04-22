@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movimente o círculo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&color=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/iframe.css">
+</head>
+
+<body>
+  <h1>Use as setas do teclado para mover o círculo</h1>
+  <canvas width="600" height="400"></canvas>
+
+  <script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    var esquerda = 37;
+    var cima = 38;
+    var direita = 39;
+    var baixo = 40;
+    var x = 20;
+    var y = 20;
+    let raio = 15;
+
+    desenhaCirculo(x, y, raio);
+
+    function desenhaCirculo(x, y, raio) {
+      limpaTela();
+      pincel.fillStyle = 'blue';
+      pincel.beginPath();
+      pincel.arc(x, y, raio, 0, 2 * Math.PI);
+      pincel.fill();
+    }
+
+    function limpaTela() {
+      pincel.clearRect(0, 0, 600, 400);
+    }
+
+    function atualizaTela(e) {
+      limpaTela();
+      desenhaCirculo(x, y, 10);
+    }
+
+    function leDoTeclado(ev) {
+      if (ev.keyCode == cima) {
+        if (y == 0) {
+          y = 400;
+          desenhaCirculo(x, y, raio);
+        } else {
+          desenhaCirculo(x, --y, raio)
+        }
+      } else if (ev.keyCode == esquerda) {
+        if (x == 0) {
+          x = 600;
+          desenhaCirculo(x, y, raio);
+        } else {
+          desenhaCirculo(--x, y, raio);
+        }
+      } else if (ev.keyCode == baixo) {
+        if (y == 400) {
+          y = 0;
+          desenhaCirculo(x, y, raio);
+        } else {
+          desenhaCirculo(x, ++y, raio);
+        }
+      } else if (ev.keyCode == direita) {
+        if (x == 600) {
+          x = 0;
+          desenhaCirculo(x, y, raio);
+        } else {
+          desenhaCirculo(++x, y, raio);
+        }
+      }
+    }
+
+    document.onkeydown = () => setInterval(leDoTeclado(event), 10);
+  </script>
+</body>
+
+</html>

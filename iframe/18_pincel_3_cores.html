@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pincel com cores predefinidas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&color=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/iframe.css">
+</head>
+
+<body>
+  <h1>Selecione uma das três cores e comece a desenhar</h1>
+  <canvas width="600" height="400"></canvas>
+
+  <script>
+    function desenhaQuadrado(x, y, tamanho, cor) {
+      pincel.fillStyle = cor;
+      pincel.fillRect(x, y, tamanho, tamanho)
+      pincel.fill();
+    }
+
+    function desenhaCirculo(x, y, raio, cor) {
+      pincel.fillStyle = cor;
+      pincel.beginPath();
+      pincel.arc(x, y, raio, 0, 2 * 3.14);
+      pincel.fill();
+    }
+
+    function desenhaPaletaDeCores() {
+      desenhaQuadrado(xVermelho, yQuadrados, tamanhoQuadrados, 'red');
+      desenhaQuadrado(xVerde, yQuadrados, tamanhoQuadrados, 'green');
+      desenhaQuadrado(xAzul, yQuadrados, tamanhoQuadrados, 'blue');
+    }
+
+    function verificaAreaPaleta(ev) {
+      let x = ev.pageX - tela.offsetLeft;
+      let y = ev.pageY - tela.offsetTop;
+
+      if (x >= 0 && x < 50) {
+        if (y >= 0 && y <= 50) {
+          corAtual = 'red';
+          return true;
+        }
+      } else if (x >= 50 && x < 100) {
+        if (y >= 0 && y <= 50) {
+          corAtual = 'green';
+          return true;
+        }
+      } else if (x >= 100 && x <= 150) {
+        if (y >= 0 && y <= 50) {
+          corAtual = 'blue';
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    function lidaComMovimentoDoMouse(ev) {
+      let x = ev.pageX - tela.offsetLeft;
+      let y = ev.pageY - tela.offsetTop;
+
+      if (x >= 0 && x <= 150) {
+        if (y >= 0 && y <= 50) {
+        } else {
+          if (desenha) desenhaCirculo(x, y, 5, corAtual);
+        }
+      } else {
+        if (desenha) desenhaCirculo(x, y, 5, corAtual);
+      }
+    }
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    pincel.fillStyle = 'gray';
+    pincel.fillRect(0, 0, 600, 400);
+
+    var desenha = false;
+    var corAtual = 'blue';
+    var xVermelho = 0;
+    var xVerde = 50;
+    var xAzul = 100;
+    var yQuadrados = 0;
+    var tamanhoQuadrados = 50;
+
+    desenhaPaletaDeCores(); // mostra os quadrados de seleção de cores
+
+    tela.onmousemove = () => lidaComMovimentoDoMouse(event);
+
+    tela.onmousedown = () => desenha = true;
+
+    tela.onmouseup = () => desenha = false;
+
+    tela.onclick = () => verificaAreaPaleta(event);
+
+  </script>
+
+</body>
+
+</html>
