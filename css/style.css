@@ -91,9 +91,9 @@ iframe {
   }
 
   .device-unsupported img {
-    height: 9vh;
-    width: 5vw;
-    margin: 1vh 2vw 0;
+    height: 4vw;
+    width: 4vw;
+    margin: 1vh 20px 0;
   }
 }
 
@@ -131,8 +131,8 @@ iframe {
   }
 
   .device-unsupported img {
-    height: 45px;
-    width: 45px;
-    margin: 1vh 2vw 0;
+    height: 3vw;
+    width: 3vw;
+    margin: 1vh 20px 0;
   }
 }
