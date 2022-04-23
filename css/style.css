@@ -6,7 +6,7 @@ html, body {
 .main {
   height: 100vh;
   width: 35vw;
-  background-color: rgb(116, 248, 231);
+  background-color: rgb(99, 204, 195);
   text-align: center;
   font-family: 'Mukta', sans-serif;
   overflow-y: auto;
@@ -19,9 +19,15 @@ html, body {
   text-decoration: underline;
 }
 
+.links {
+  list-style-image: url("../img/point.png");
+  list-style-position: inside;
+}
+
 .links li {
   padding: 1.5vh 0;
   text-decoration: none;
+  list-style-type: square;
 }
 
 .links a {
